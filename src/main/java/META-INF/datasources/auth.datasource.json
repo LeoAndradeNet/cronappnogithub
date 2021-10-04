@@ -1,0 +1,117 @@
+{
+  "customId": "auth",
+  "queryName": "Autenticar",
+  "sourceType": "entityFullName",
+  "baseEntity": null,
+  "blockly": null,
+  "entitySimpleName": "User",
+  "entityFullName": "app.entity.User",
+  "query": {
+    "isEmpty": true,
+    "isRawSql": true,
+    "sqlContent": "select u \nfrom User u \nwhere u.normalizedUserName \u003d :login \n  and (\n        exists(select ur\n               from UserRole ur\n               where ur.user.normalizedUserName \u003d u.normalizedUserName\n                 and exists(select rs\n                            from RoleSecurable rs\n                            where rs.role.normalizedName \u003d ur.role.normalizedName\n                              and rs.securable.name \u003d \u0027Administrators\u0027))\n       or \n       exists(select au from ApplicationUser au \n              where au.application.id \u003d :applicationId \n                and au.user.normalizedUserName \u003d u.normalizedUserName)\n  )",
+    "multiTenant": false,
+    "paginatorAutomatic": false,
+    "pagination": false
+  },
+  "queryParamsValues": [
+    {
+      "fieldName": "login",
+      "fieldValue": ""
+    },
+    {
+      "fieldName": "applicationId",
+      "fieldValue": "expression:${application.id}"
+    }
+  ],
+  "verbs": {
+    "GET": false,
+    "GETAuthorities": null,
+    "POST": false,
+    "POSTAuthorities": null,
+    "PUT": false,
+    "PUTAuthorities": null,
+    "DELETE": false,
+    "DELETEAuthorities": null,
+    "FILTER": false,
+    "FILTERAuthorities": null,
+    "COUNT": false,
+    "COUNTAuthorities": null
+  },
+  "events": {
+    "beforeInsert": null,
+    "beforeUpdate": null,
+    "beforeDelete": null,
+    "afterInsert": null,
+    "afterUpdate": null,
+    "afterDelete": null,
+    "onNavigate": null,
+    "onError": null
+  },
+  "defaultValues": {
+    "id": null,
+    "accessFailedCount": null,
+    "email": null,
+    "emailConfirmed": null,
+    "lockoutEnabled": null,
+    "lockoutEnd": null,
+    "name": null,
+    "normalizedEmail": null,
+    "normalizedUserName": null,
+    "password": null,
+    "phoneNumber": null,
+    "phoneNumberConfirmed": null,
+    "securityStamp": null,
+    "twoFactorEnabled": null,
+    "userName": null,
+    "theme": null,
+    "picture": null
+  },
+  "defaultValuesProperties": {
+    "id": null,
+    "accessFailedCount": null,
+    "email": null,
+    "emailConfirmed": null,
+    "lockoutEnabled": null,
+    "lockoutEnd": null,
+    "name": null,
+    "normalizedEmail": null,
+    "normalizedUserName": null,
+    "password": null,
+    "phoneNumber": null,
+    "phoneNumberConfirmed": null,
+    "securityStamp": null,
+    "twoFactorEnabled": null,
+    "userName": null,
+    "theme": null,
+    "picture": null
+  },
+  "security": {
+    "id": null,
+    "accessFailedCount": null,
+    "email": null,
+    "emailConfirmed": null,
+    "lockoutEnabled": null,
+    "lockoutEnd": null,
+    "name": null,
+    "normalizedEmail": null,
+    "normalizedUserName": null,
+    "password": null,
+    "phoneNumber": null,
+    "phoneNumberConfirmed": null,
+    "securityStamp": null,
+    "twoFactorEnabled": null,
+    "userName": null,
+    "theme": null,
+    "picture": null
+  },
+  "calcFields": {},
+  "calcFieldsSecurity": {},
+  "calcFieldsProperties": {},
+  "errorHandles": {
+    "primaryKey": null,
+    "foreignKey": null
+  },
+  "serviceUrl": "api/cronapi/odata/v2/app/auth/",
+  "audit": false
+}
